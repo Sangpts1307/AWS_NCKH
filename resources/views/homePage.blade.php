@@ -33,13 +33,14 @@
 <body>
 
     <div class="container-box">
-        
-        <h3 class="text-center mb-3">Hệ thống quản lý dữ liệu</h3>
-
+        <div class="col-md-12">
+            <h3 class="text-center mb-3">Hệ thống quản lý dữ liệu</h3>
+            <a href="/logout" class="btn btn-danger btn-logout">Đăng xuất</a>
+        </div>
         <!-- Search form -->
         <div class="row">
             <div class="row col-md-9">
-                <form id="search-form" action="{{ url('/homePage') }}" method="GET" enctype="multipart/form-data">
+                <form id="search-form" class="row" action="{{ url('/homePage') }}" method="GET" enctype="multipart/form-data">
                     <div class="col-md-3">
                         <input type="text" class="form-control" placeholder="Tên file" name="file_name" value="@if(isset($param['file_name'])) {{ $param['file_name'] }} @endif">
                     </div>
@@ -60,10 +61,10 @@
                     <!-- Upload file btn -->
                     <div class="col-md-6 mb-3">
                         <input id="choose_file" type="file" name="file" class="btn btn-primary hidden">
-                        <label for="choose_file" class="btn btn-primary">Tai len</label>
+                        <label for="choose_file" class="btn btn-primary">Tải lên</label>
                         {{ csrf_field() }}
                     </div>
-                    <a href="/logout" class="col-md-6 mb-3 btn btn-danger btn-logout">Đăng xuất</a>
+                    
                 </form>
             </div>
         </div>
@@ -75,7 +76,7 @@
                     <th>#</th>
                     <th>Tên file</th>
                     <th>Ngày upload</th>
-                    <th>Xóa</th>
+                    <th>Hành động</th>
                 </tr>
             </thead>
             <tbody>
