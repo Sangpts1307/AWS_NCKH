@@ -47,13 +47,16 @@ class HomePageController extends Controller
     {
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $originalName = $file->getClientOriginalName();
+            // $originalName = $file->getClientOriginalName();
+            // $timestamp = date('H:i:s');
+            // $originalName = $timestamp.'_'. $file->getClientOriginalName();
+            $originalName = time().'_'. $file->getClientOriginalName();
             try {
                 DB::beginTransaction();
                 // Storage::disk('s3')->put('uploads', $file);
                 Storage::disk('s3')->putFileAs('uploads', $file, $originalName);
                 $createFile = new File();
-                $createFile->file_name = $file->getClientOriginalName();
+                $createFile->file_name = $originalName;
                 $createFile->created_at = Carbon::now();
                 $createFile->save();
                 DB::commit();
